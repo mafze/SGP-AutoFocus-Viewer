@@ -1,0 +1,84 @@
+﻿Version 1.00
+---------
+First stable release
+
+Version 1.10
+---------
++ Summary output text TAB delimited
++ Date and Time as first columns in summary output
++ Toggling between graphs using up and down arrow keys doesn't change Min and Max of X and Y scales
++ The best focus HFR is highlighted on each AF graph with a black diamond symbol
++ A "focus postion" vs. "temperature" graph has been added. This feature also includes a linear fit in order to estimate the temperature coefficient. The fitted temperature coefficient is also printed in the Summary output using the SGP definition.
++ FIXED BUG: regional settings having "," as decimal delimiter doesn't through an exception anymore
+
+
+Version 1.11
+---------
++ Fix: several minor bugs were fixed
++ Fix: consecutive focus runs manually triggered by the "Rerun" button would be grouped into one big AF Run. These are now displayed as separate, individual AF Runs.
++ Fix: loading times could be many seconds for large log files. Now the loading time is FAST.
++ Change: the current target is now tracked through a sequence, and a "Target" column has been added to the Summary output. If the AF is triggered manually without running a sequence the entry will be empty.
++ Change: data points can now be excluded by simply clicking on data points in the "Position vs Temperature" graph. The linear regression curve will be re-calculated and re-displayed in the form. This allows for excluding outliners. To reinclude a data point one can click on it again.
++ Change: added a column showing potential warning and rerun messages. Possible messages are:
+		Warning = HFR validation frame warning
+		Rerun = manually triggered rerun
++ Fix: bug when reading Beta v3.1.0.295
+
+Version 1.2
+---------
++ Change: multiple file reading now possible (multiselect enabled in the file selection dialog). Logfiles are given file IDs according to their filename, which are used to identify the run in the summary output and AF graphs.
++ Change: AF runs generated using the new quadratic AF routine (3.1 betas) are plotted together with the best-fit quadratic function as logged by SGP. The validation frame is highlighted using a black diamond symbol. AF runs from older logfiles are plotted as lines that connect the dots.
++ Change: The Position vs Temperature graph now has a dropdownlist that allows analysis of specific filters. The fitted linear slope is plotted for each filter, with the R^2 factor displayed. The lines are color coded according to commonly used filter names (R,Red,RED,etc..)
++ Change: The summary text output has an improved display of the linear regression result for each filter.
++ Change: IF more than one filter was used for AF, a filter offset calculation using the "mid temperature" method is shown (big acknowledgement to Jerry and Bernd for the method!). Basically filter offsets are calculated using the linear regression results, evaluated at the average temperature of all AF runs.
++ Change: The scan details output has been moved to a separate form. Messages related to the new quadratic AF routine are now displayed.
++ Change: "Save to JPG" buttons have been added to the AF graph and the Position vs Temperature graph. No need to make cumbersome cropping of screenshots for posting graphs on the forum! The JPG shows whatever AF run (or Filter) has been selected. To save more runs (or filters) one has to select them and press the "Save to JPG" button. Filenames are coded according to the selected AF run (or filter). 
+
+Version 1.21
+---------
++ FIXED BUG: added extension .log to read files starting from beta 3.1.0.388
+
+Version 1.22
+---------
++ FIXED BUG: handles exception when no temperature data can be found
++ FIXED BUG: only assign random DARK colors in the pos-vs-temp plots (used in case the filter name cannot be identified)
++ Change: added quadratic fit "Q" quality parameter to the output table (when reading older SGP files using old AF routine the parameter will show NA by default). Also shows minimum quality factor "min Q" used by SGP to qualify succesful runs. This is by default 90%, but the program will detect if 'quadratic_fit_min_quality' has been set by user
++ Change: added black as the default color of the "None" filter name (used in pos-vs-temp plot)
++ "Show all AF runs" check box added. If checked then aborted/failed runs will also be shown. By default it is unchecked.
+
+Version 1.23
+---------
++ FIXED BUG: fixed problem with saving path upon closing application
++ FIXED BUG: fixed problem with AF run number in "Scan details" window when option "Show all AF runs" is enabled
++ FIXED BUG: fixed problem with reading FWHM value when Pinpoint is used for AF
++ NEW: The text outputs of the “AF Run List” and “Temperature and Filter Analysis” have been separated into two TABS for better readability
++ NEW: For more than one filter the average temperature compensation factor is calculated
++ NEW: The ability to exclude/include AF runs for the temperature analysis has been re-inserted (it was removed when multiple filter analysis was introduced). This allows for excluding outliners. By click on a point in the temperature vs. position graph one can include (square symbol) or exclude (cross symbol) a point. The linear regression curve will be re-calculated and the text output in the “Temperature and Filter Analysis” tab will be updated. In addition, a check box in the corresponding AF graph will show if the Run is included or excluded. The checkbox can also be used independently to perform the same task. These features also work for multiple filters.
+
+Version 1.24
+---------
++ FIXED BUG: fixed problem with AF validation point not shown (in black) in the AF graphs
++ NEW: Handles SGP, ASTAP and PINPOINT autofocus messages
+
+Version 1.25
+---------
++ FIXED BUG: fixed problem with AF validation point when using ASTAP
++ NEW: opening single log file by double-clicking on it
++ NEW: drag-and-drop opening of single or multiple log files
++ NEW: added "AF Binning" and "AF Exposure length" log messages to "Scan details" window
+
+Version 1.26
+---------
++ FIXED BUG: handles new validation frame HFR message starting from beta 4.2
++ NEW: Options dialog which exposes some "advanced" options (these were previously only accessible through a command prompt option). The advanced options include:
+	* Hyperbolic fit: the Logviewer will redo hyperbolic curve fits of all AF runs. The logfile must be reloaded!
+	* Auto scale: rescales the x and y axes for each AF curve in the AF Run GRaph window
+	* Replay mode: allows to replay the AF run in SGP by showing the progression of the AF run in the AF Run Graph. Useful to spot issues such as bad "wings" of the curve. The logfile must be reloaded!
+	* Automatic save mode: allows saving the data of each AF run to a file
++ NEW: Custom Color scheme, available in the Options dialog. Requires a restart of the Logviewer.
++ NEW: Tooltip feature, where some explanations of functions are explained by hovering with the mouse over the corresponding control.
++ NEW: HFR and Position of each data point in a AF graph can be seen by hovering the mouse over the point
++ NEW: Number of detected stars shown in the text summary
+
+		
+
